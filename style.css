@@ -1,0 +1,52 @@
+.container {  
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 500px;
+    height: 500px;
+    background-color: lightblue;
+}
+
+.grid-container {  
+    position: relative;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 100%;
+}
+
+.numbers_and_operators {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    background-color: black;
+    padding: 5px;
+}
+
+.top_buttons  {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    background-color: black;
+    padding: 10px;
+}
+
+.result {
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    background-color: black;
+    padding: 10px;
+}
+
+button {
+    height: 90px;
+}
+
+input {
+    height: 90px;
+    text-align: right;
+    font-size: x-large;
+}
