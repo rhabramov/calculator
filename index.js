@@ -66,7 +66,6 @@ function operate(operator, num_1, num_2) {
 function add_number_to_display(append_to_display) {
     if (display == "0" || operator_pressed) {
         display = append_to_display;
-        operator_pressed = false;
     } else {
         display = display + '' + append_to_display;
     }
@@ -77,6 +76,7 @@ function add_number_to_display(append_to_display) {
 function operator_clicked(operation) {
 
     console.log("operation is: ", operation);
+    console.log("operator pressed is : ", operator_pressed);
 
     if (operator_pressed == false) { // This is the first time an operator was pressed
         previous_number = parseInt(display);
@@ -90,11 +90,13 @@ function operator_clicked(operation) {
         }
     } else { // This is NOT the first time an operator was pressed e.g., the equal button was not applied
         // Do the calculation and display it
+        console.log("current operation: " + current_operation);
         let result = window[current_operation](parseInt(previous_number), parseInt(display));
         display = result;
 
         // Set the new previous number to the the new display
         previous_number = parseInt(display);
+        document.getElementById("display").value = display;
         
         // Keep the operator pressed to be true
         operator_pressed = true;
