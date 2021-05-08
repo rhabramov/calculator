@@ -64,19 +64,25 @@ function operate(operator, num_1, num_2) {
 
 // Function to concatenate a number to the current display 
 function add_number_to_display(append_to_display) {
-    if (display == "0" || operator_pressed) {
-        display = append_to_display;
+    if (operator_pressed) {
+        if (display == previous_number) {
+            display = append_to_display;
+        } else {
+            display = String(display) + append_to_display;
+        }
     } else {
-        display = display + '' + append_to_display;
+        if (display == "0") {
+            display = append_to_display;
+        } else {
+            display = String(display) + append_to_display;
+        }
     }
+
     document.getElementById("display").value = display;
 }
 
 // Function when an operator is clicked
 function operator_clicked(operation) {
-
-    console.log("operation is: ", operation);
-    console.log("operator pressed is : ", operator_pressed);
 
     if (operator_pressed == false) { // This is the first time an operator was pressed
         previous_number = parseInt(display);
@@ -90,7 +96,6 @@ function operator_clicked(operation) {
         }
     } else { // This is NOT the first time an operator was pressed e.g., the equal button was not applied
         // Do the calculation and display it
-        console.log("current operation: " + current_operation);
         let result = window[current_operation](parseInt(previous_number), parseInt(display));
         display = result;
 
@@ -156,24 +161,16 @@ document.addEventListener('keydown', function(e){
         case "9": add_number_to_display(9); break;
         case "0": add_number_to_display(0); break;
         case "+": 
-            current_operation = "add"; 
-            previous_number = parseInt(display);
-            operator_pressed = true;
+            operator_clicked("+");
             break;
         case "-": 
-            current_operation = "subtract"; 
-            previous_number = parseInt(display);
-            operator_pressed = true;
+            operator_clicked("-");
             break;
         case "*": 
-            current_operation = "multiply"; 
-            previous_number = parseInt(display);
-            operator_pressed = true;
+            operator_clicked("x");
             break;
         case "/": 
-            current_operation = "divide"; 
-            previous_number = parseInt(display);
-            operator_pressed = true;
+            operator_clicked("/");
             break;
         case "=": 
             equal_button_clicked();
